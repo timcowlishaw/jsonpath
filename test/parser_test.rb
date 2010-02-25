@@ -30,6 +30,11 @@ class ParserTest < Test::Unit::TestCase
         path = "$.'a b'"
         assert_resolves({"a b" => 1}, path, [1])
       end
+      
+      should "parse keys containing underlines" do
+        path = "$.created_at"
+        assert_resolves({"created_at" => "Today"}, path, ["Today"])
+      end
     end
     context "array" do
       should "parse bare wildcard" do
